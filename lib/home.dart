@@ -1,79 +1,157 @@
 import 'package:flutter/material.dart';
 import 'missoes.dart';
+import 'perfil.dart';
 
 class HomePage extends StatelessWidget {
+
+  final String nome;
+
+  HomePage({required this.nome});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Color(0xFF0F0F0F),
+
       appBar: AppBar(
-        title: Text("Minha Carreira"),
+        title: Text("Jornada Flutter"),
         backgroundColor: Colors.deepPurple,
       ),
+
       body: Padding(
         padding: EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Text(
+              "Olá, $nome 👋",
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+
+            SizedBox(height: 5),
 
             Text(
-              "Diego",
-              style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+              "Bem-vindo à Jornada Flutter",
+              style: TextStyle(color: Colors.white70),
             ),
 
-            SizedBox(height: 10),
-
-            Text(
-              "Cargo: Estagiário Flutter",
-              style: TextStyle(color: Colors.white70, fontSize: 16),
-            ),
-
-            SizedBox(height: 20),
-
-            LinearProgressIndicator(
-              value: 0.3,
-              minHeight: 10,
-              backgroundColor: Colors.white12,
-              color: Colors.deepPurple,
-            ),
-
-            SizedBox(height: 40),
-
-            Text(
-              "Projetos disponíveis",
-              style: TextStyle(color: Colors.white, fontSize: 18),
-            ),
-
-            SizedBox(height: 20),
-
-            Card(
-              child: ListTile(
-                leading: Icon(Icons.phone_android),
-                title: Text("Criar primeira tela"),
-                onTap: () {
+            SizedBox(height: 25),
+            Align(
+              alignment: Alignment.centerRight,
+              child: IconButton(
+                icon: Icon(Icons.person, color: Colors.white),
+                onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => MissoesPage()),
+                    MaterialPageRoute(
+                      builder: (context) => PerfilPage(
+                        nome: nome,
+                        email: "usuario@email.com",
+                      ),
+                    ),
                   );
                 },
               ),
             ),
 
-            Card(
-              child: ListTile(
-                leading: Icon(Icons.phone_android),
-                title: Text("Criar botão no Flutter"),
-              ),
+            // PROJETO 1
+            _cardProjeto(
+              context,
+              "Criar a primeira tela",
+              "Aprenda Scaffold, Text e Column",
+              100,
             ),
 
-            Card(
-              child: ListTile(
-                leading: Icon(Icons.phone_android),
-                title: Text("Criar layout com Column e Row"),
-              ),
+            SizedBox(height: 15),
+
+            // PROJETO 2
+            _cardProjeto(
+              context,
+              "Criar botão funcional",
+              "Aprenda ElevatedButton e Navigator",
+              150,
+            ),
+
+            SizedBox(height: 15),
+
+            // PROJETO 3
+            _cardProjeto(
+              context,
+              "Criar navegação entre telas",
+              "Aprenda rotas e troca de páginas",
+              200,
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _cardProjeto(BuildContext context, String titulo, String descricao, int xp) {
+    return Container(
+      padding: EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        color: Color(0xFF1C1C1C),
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+
+          Text(
+            titulo,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+
+          SizedBox(height: 8),
+
+          Text(
+            descricao,
+            style: TextStyle(color: Colors.white70),
+          ),
+
+          SizedBox(height: 15),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+
+              Text(
+                "+$xp XP",
+                style: TextStyle(
+                  color: Colors.deepPurple,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.deepPurple,
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MissoesPage(
+                        titulo: titulo,
+                        descricao: descricao,
+                        xp: xp,
+                      ),
+                    ),
+                  );
+                },
+                child: Text("Abrir"),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
