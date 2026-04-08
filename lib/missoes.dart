@@ -18,8 +18,13 @@ class MissoesPage extends StatelessWidget {
       backgroundColor: Color(0xFF0F0F0F),
 
       appBar: AppBar(
-        title: Text("Projeto"),
-        backgroundColor: Colors.deepPurple,
+        title: Text(
+          "Projeto",
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Color(0xFF1E1E1E), // corrigido (antes branco)
+        elevation: 0,
+        iconTheme: IconThemeData(color: Colors.white),
       ),
 
       body: Padding(
@@ -44,7 +49,7 @@ class MissoesPage extends StatelessWidget {
             Text(
               "Objetivo do Projeto",
               style: TextStyle(
-                color: Colors.deepPurple,
+                color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -65,12 +70,12 @@ class MissoesPage extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(15),
               decoration: BoxDecoration(
-                color: Colors.deepPurple.withOpacity(0.2),
+                color: Colors.white.withOpacity(0.2),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Row(
                 children: [
-                  Icon(Icons.star, color: Colors.deepPurple),
+                  Icon(Icons.star, color: Colors.white),
                   SizedBox(width: 10),
                   Text(
                     "+$xp XP",
@@ -92,7 +97,7 @@ class MissoesPage extends StatelessWidget {
               height: 55,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.deepPurple,
+                  backgroundColor: Colors.white,
                 ),
                 onPressed: () {
                   Navigator.pop(context);

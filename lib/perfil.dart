@@ -9,108 +9,213 @@ class PerfilPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF0F0F0F),
+      backgroundColor: Color(0xFF121212), // fundo mais moderno
 
       appBar: AppBar(
-        title: Text("Perfil do Usuário"),
-        backgroundColor: Colors.deepPurple,
+        title: Text(
+          "Perfil",
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Color(0xFF1E1E1E), // corrigido (antes branco)
+        elevation: 0,
+        iconTheme: IconThemeData(color: Colors.white),
       ),
 
-      body: Padding(
-        padding: EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            children: [
 
-            // FOTO / AVATAR
-            Center(
-              child: CircleAvatar(
-                radius: 45,
-                backgroundColor: Colors.deepPurple,
-                child: Text(
-                  nome[0].toUpperCase(),
-                  style: TextStyle(fontSize: 30, color: Colors.white),
+              // 👤 CARD PRINCIPAL
+              Container(
+                padding: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Color(0xFF1E1E1E),
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black,
+                      blurRadius: 10,
+                      offset: Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  children: [
+
+                    CircleAvatar(
+                      radius: 40,
+                      backgroundColor: Colors.white12, // melhorado
+                      child: Text(
+                        (nome.isNotEmpty ? nome[0] : "U").toUpperCase(),
+                        style: TextStyle(fontSize: 28, color: Colors.white),
+                      ),
+                    ),
+
+                    SizedBox(height: 15),
+
+                    Text(
+                      nome.isNotEmpty ? nome : "Usuário",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22, // aumentado
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+
+                    SizedBox(height: 5),
+
+                    Text(
+                      email,
+                      style: TextStyle(color: Colors.white70),
+                    ),
+                  ],
                 ),
               ),
-            ),
 
-            SizedBox(height: 25),
+              SizedBox(height: 20),
 
-            // NOME
-            Text(
-              "Nome",
-              style: TextStyle(color: Colors.deepPurple),
-            ),
-            Text(
-              nome,
-              style: TextStyle(color: Colors.white, fontSize: 18),
-            ),
+              // 📊 CARD PROGRESSO
+              Container(
+                padding: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Color(0xFF1E1E1E),
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black,
+                      blurRadius: 10,
+                      offset: Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
 
-            SizedBox(height: 20),
+                    Text(
+                      "Progresso",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
 
-            // EMAIL
-            Text(
-              "E-mail",
-              style: TextStyle(color: Colors.deepPurple),
-            ),
-            Text(
-              email,
-              style: TextStyle(color: Colors.white, fontSize: 18),
-            ),
+                    SizedBox(height: 10),
 
-            SizedBox(height: 25),
+                    LinearProgressIndicator(
+                      value: 0.4,
+                      minHeight: 8, // mais bonito
+                      backgroundColor: Colors.white12,
+                      color: Colors.white,
+                    ),
 
-            // PROGRESSO
-            Text(
-              "Progresso na Jornada Flutter",
-              style: TextStyle(color: Colors.deepPurple),
-            ),
+                    SizedBox(height: 10),
 
-            SizedBox(height: 10),
+                    Text(
+                      "40% concluído",
+                      style: TextStyle(color: Colors.white70),
+                    ),
+                  ],
+                ),
+              ),
 
-            LinearProgressIndicator(
-              value: 0.4, // 40% (mockado)
-              backgroundColor: Colors.white12,
-              color: Colors.deepPurple,
-            ),
+              SizedBox(height: 20),
 
-            SizedBox(height: 8),
+              // ⏱ CARD TEMPO
+              Container(
+                padding: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Color(0xFF1E1E1E),
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black,
+                      blurRadius: 10,
+                      offset: Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: Row(
+                  children: [
 
-            Text(
-              "40% concluído",
-              style: TextStyle(color: Colors.white70),
-            ),
+                    Icon(Icons.timer, color: Colors.white),
 
-            SizedBox(height: 25),
+                    SizedBox(width: 10),
 
-            // TEMPO
-            Text(
-              "Tempo de evolução",
-              style: TextStyle(color: Colors.deepPurple),
-            ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Tempo de evolução",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        Text(
+                          "3 dias de aprendizado",
+                          style: TextStyle(color: Colors.white70),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
 
-            SizedBox(height: 5),
+              SizedBox(height: 20),
 
-            Text(
-              "3 dias de aprendizado",
-              style: TextStyle(color: Colors.white70),
-            ),
+              // 🚀 CARD PRÓXIMOS PASSOS
+              Container(
+                padding: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Color(0xFF1E1E1E),
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black,
+                      blurRadius: 10,
+                      offset: Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
 
-            SizedBox(height: 25),
+                    Text(
+                      "Próximos passos",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
 
-            // O QUE FALTA
-            Text(
-              "Próximos passos",
-              style: TextStyle(color: Colors.deepPurple),
-            ),
+                    SizedBox(height: 10),
 
-            SizedBox(height: 10),
-
-            Text("• Criar navegação entre telas", style: TextStyle(color: Colors.white)),
-            Text("• Conectar com Firebase", style: TextStyle(color: Colors.white)),
-            Text("• Criar sistema de login real", style: TextStyle(color: Colors.white)),
-          ],
+                    _item("Criar navegação entre telas"),
+                    _item("Conectar com Firebase"),
+                    _item("Criar sistema de login real"),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
+      ),
+    );
+  }
+
+  Widget _item(String texto) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 4),
+      child: Row(
+        children: [
+          Icon(Icons.check_circle, color: Colors.white, size: 18),
+          SizedBox(width: 8),
+          Text(
+            texto,
+            style: TextStyle(color: Colors.white),
+          ),
+        ],
       ),
     );
   }

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'missoes.dart';
-import 'perfil.dart';
+import 'perfil.dart';import 'perfil.dart';import 'perfil.dart';
 
 class HomePage extends StatelessWidget {
-
   final String nome;
+  final String email;
 
-  HomePage({required this.nome});
+  HomePage({required this.nome, required this.email});
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +14,13 @@ class HomePage extends StatelessWidget {
       backgroundColor: Color(0xFF0F0F0F),
 
       appBar: AppBar(
-        title: Text("Jornada Flutter"),
-        backgroundColor: Colors.deepPurple,
+        title: Text(
+          "Jornada Flutter",
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Color(0xFF1E1E1E), // corrigido (antes branco)
+        elevation: 0,
+        iconTheme: IconThemeData(color: Colors.white),
       ),
 
       body: Padding(
@@ -35,10 +40,9 @@ class HomePage extends StatelessWidget {
 
             Text(
               "Bem-vindo à Jornada Flutter",
-              style: TextStyle(color: Colors.white70),
+              style: TextStyle(color: Colors.white.withOpacity(0.7)),
             ),
 
-            SizedBox(height: 25),
             Align(
               alignment: Alignment.centerRight,
               child: IconButton(
@@ -49,7 +53,7 @@ class HomePage extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (context) => PerfilPage(
                         nome: nome,
-                        email: "usuario@email.com",
+                        email: email,
                       ),
                     ),
                   );
@@ -114,7 +118,7 @@ class HomePage extends StatelessWidget {
 
           Text(
             descricao,
-            style: TextStyle(color: Colors.white70),
+            style: TextStyle(color: Colors.white.withOpacity(0.7)),
           ),
 
           SizedBox(height: 15),
@@ -126,14 +130,14 @@ class HomePage extends StatelessWidget {
               Text(
                 "+$xp XP",
                 style: TextStyle(
-                  color: Colors.deepPurple,
+                  color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),
               ),
 
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.deepPurple,
+                  backgroundColor: Colors.white,
                 ),
                 onPressed: () {
                   Navigator.push(
